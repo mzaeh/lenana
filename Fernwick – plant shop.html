@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fernwick – houseplants and pots</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E6EEE3;--surface:#F7FAF5;--ink:#16291F;--muted:#4F6357;--line:#C3D1BF;--accent:#1F4D37;--on-accent:#F7FAF5;--pop:#F2B632;--on-pop:#16291F;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1B15;--surface:#172A20;--ink:#E4EFE1;--muted:#9DB5A5;--line:#2C4538;--accent:#7FCB9D;--on-accent:#0F1B15;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1B15;--surface:#172A20;--ink:#E4EFE1;--muted:#9DB5A5;--line:#2C4538;--accent:#7FCB9D;--on-accent:#0F1B15;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "DM Sans",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;line-height:1.15;margin:0}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--pop);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:12px 20px}
+.logo{font-family:"Young Serif",Georgia,serif;font-size:1.4rem;margin-right:auto}
+.btn{background:var(--accent);color:var(--on-accent);border:0;border-radius:999px;padding:10px 18px;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+#cartBtn span{background:var(--pop);color:var(--on-pop);border-radius:999px;padding:1px 8px;margin-left:6px}
+.hero{max-width:1100px;margin:0 auto;padding:56px 20px 24px}
+.hero h1{font-size:clamp(2.2rem,6vw,4.2rem);max-width:15ch}
+.hero p{max-width:52ch;color:var(--muted);font-size:1.1rem;margin:16px 0 0}
+.tools{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:7px 16px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tools input,.tools select{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.tools input{margin-left:auto;min-width:200px}
+.grid{max-width:1100px;margin:0 auto;padding:12px 20px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.art{aspect-ratio:1/1;background:var(--c);display:grid;place-items:end center}
+.art svg{width:70%;height:auto}
+.info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.info h3{font-size:1.15rem}
+.info p{margin:0;color:var(--muted);font-size:.92rem;flex:1}
+.row{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.price{font-weight:700}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
+footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center;color:var(--muted);font-size:.9rem}
+#veil{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}
+#veil.on{opacity:1;pointer-events:auto}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--surface);border-left:1px solid var(--line);z-index:30;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+aside.on{transform:none}
+.ah{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.ab{flex:1;overflow:auto;padding:8px 20px}
+.af{padding:16px 20px;border-top:1px solid var(--line);display:grid;gap:10px}
+.line{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.line .art{width:52px;border-radius:8px;aspect-ratio:1/1}
+.line .art svg{width:80%}
+.qty{display:flex;align-items:center;gap:8px;margin-top:4px}
+.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer}
+.tot{display:flex;justify-content:space-between}
+.tot.big{font-weight:700;font-size:1.15rem}
+form{display:grid;gap:12px;padding:12px 0}
+label{display:grid;gap:4px;font-size:.9rem;color:var(--muted)}
+form input{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--ink)}
+.done{text-align:center;padding:40px 10px}
+.done h2{margin-bottom:10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Fernwick</div>
+  <button class="btn ghost" id="theme" aria-label="Switch colour theme">Theme</button>
+  <button class="btn" id="cartBtn">Cart<span id="count">0</span></button>
+</header>
+
+<section class="hero">
+  <h1>Plants that forgive beginners.</h1>
+  <p>Hardy houseplants, hand-thrown pots and the care basics to keep them going. Free delivery on orders over $60.</p>
+</section>
+
+<div class="tools">
+  <div id="chips" role="group" aria-label="Filter by category"></div>
+  <select id="sort" aria-label="Sort products">
+    <option value="feat">Featured</option>
+    <option value="lo">Price: low to high</option>
+    <option value="hi">Price: high to low</option>
+  </select>
+  <input id="q" type="search" placeholder="Search products" aria-label="Search products">
+</div>
+<main class="grid" id="grid" aria-live="polite"></main>
+<footer>Fernwick demo storefront. Orders are not processed and no payment is taken.</footer>
+
+<div id="veil"></div>
+<aside id="drawer" aria-label="Shopping cart" aria-hidden="true">
+  <div class="ah"><h2 id="dtitle">Your cart</h2><button class="btn ghost" id="close">Close</button></div>
+  <div class="ab" id="body"></div>
+  <div class="af" id="foot"></div>
+</aside>
+
+<script>
+const P=[
+{id:1,n:"Snake plant",c:"Plants",p:24,d:"Upright, tolerates low light and missed waterings.",k:"#BFD8B4",t:"plant"},
+{id:2,n:"Pothos",c:"Plants",p:18,d:"Trailing vines that grow fast on a shelf or hook.",k:"#CFE3A8",t:"plant"},
+{id:3,n:"ZZ plant",c:"Plants",p:32,d:"Glossy leaves, stores water, thrives on neglect.",k:"#A9CDB5",t:"plant"},
+{id:4,n:"Peace lily",c:"Plants",p:28,d:"White blooms; droops when thirsty, perks up fast.",k:"#C4DCCB",t:"plant"},
+{id:5,n:"Rubber plant",c:"Plants",p:38,d:"Bold, dark leaves for a bright corner.",k:"#9CC2A8",t:"plant"},
+{id:6,n:"Monstera",c:"Plants",p:45,d:"Split leaves that get bigger every season.",k:"#B5D6A0",t:"plant"},
+{id:7,n:"Stoneware pot, 15 cm",c:"Pots",p:22,d:"Speckled glaze with a drainage hole and saucer.",k:"#F2B632",t:"pot"},
+{id:8,n:"Stoneware pot, 22 cm",c:"Pots",p:34,d:"Fits a monstera or rubber plant with room to grow.",k:"#E8C9A0",t:"pot"},
+{id:9,n:"Hanging planter",c:"Pots",p:26,d:"Cotton rope and a glazed bowl for trailing plants.",k:"#9FC3E0",t:"pot"},
+{id:10,n:"Plant food, 250 ml",c:"Care",p:9,d:"Liquid feed for the growing season. Mix with water.",k:"#E7B7C6",t:"bottle"},
+{id:11,n:"Watering can",c:"Care",p:19,d:"Long, thin spout reaches under leaves.",k:"#C9C2E8",t:"bottle"},
+{id:12,n:"Moisture meter",c:"Care",p:12,d:"Push into the soil to see if it is time to water.",k:"#F0D58A",t:"bottle"}];
+const $=s=>document.querySelector(s), money=n=>"$"+n.toFixed(2);
+let cat="All", cart={};
+try{cart=JSON.parse(localStorage.getItem("fw-cart")||"{}")||{}}catch(e){cart={}}
+const save=()=>{try{localStorage.setItem("fw-cart",JSON.stringify(cart))}catch(e){}};
+
+function art(p){
+  const g="#1F4D37", pot="#8A4B2E";
+  const s={
+    plant:`<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M60 78V30M60 70C40 66 30 48 34 30c18 4 26 20 26 40zM60 62C80 58 92 42 86 24c-18 6-26 22-26 38z" fill="${g}" stroke="${g}" stroke-width="2"/><path d="M34 78h52l-6 38H40z" fill="${pot}"/></svg>`,
+    pot:`<svg viewBox="0 0 120 120" aria-hidden="true"><rect x="28" y="62" width="64" height="12" rx="4" fill="${pot}"/><path d="M34 74h52l-6 42H40z" fill="${pot}"/></svg>`,
+    bottle:`<svg viewBox="0 0 120 120" aria-hidden="true"><rect x="44" y="40" width="32" height="76" rx="8" fill="${g}"/><rect x="52" y="26" width="16" height="16" rx="3" fill="${g}"/></svg>`};
+  return `<div class="art" style="--c:${p.k}">${s[p.t]}</div>`;
+}
+function cats(){
+  const list=["All",...new Set(P.map(p=>p.c))];
+  $("#chips").style.cssText="display:flex;gap:8px;flex-wrap:wrap";
+  $("#chips").innerHTML=list.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-c="${c}">${c}</button>`).join("");
+}
+function render(){
+  const q=$("#q").value.trim().toLowerCase(), so=$("#sort").value;
+  let l=P.filter(p=>(cat==="All"||p.c===cat)&&(p.n+p.d).toLowerCase().includes(q));
+  if(so==="lo")l.sort((a,b)=>a.p-b.p); if(so==="hi")l.sort((a,b)=>b.p-a.p);
+  $("#grid").innerHTML=l.length?l.map(p=>`<article class="card">${art(p)}<div class="info"><h3>${p.n}</h3><p>${p.d}</p><div class="row"><span class="price">${money(p.p)}</span><button class="btn" data-add="${p.id}">Add to cart</button></div></div></article>`).join(""):`<p class="empty">No products match “${$("#q").value}”. Clear the search or pick another category.</p>`;
+}
+const items=()=>Object.keys(cart).map(id=>({p:P.find(x=>x.id==id),q:cart[id]})).filter(i=>i.p);
+const sub=()=>items().reduce((s,i)=>s+i.p.p*i.q,0);
+const ship=()=>sub()===0||sub()>=60?0:6;
+function badge(){$("#count").textContent=items().reduce((s,i)=>s+i.q,0)}
+
+function cartView(){
+  $("#dtitle").textContent="Your cart";
+  const it=items();
+  $("#body").innerHTML=it.length?it.map(({p,q})=>`<div class="line">${art(p)}<div><strong>${p.n}</strong><div class="qty"><button data-dec="${p.id}" aria-label="Remove one ${p.n}">−</button>${q}<button data-add="${p.id}" aria-label="Add one ${p.n}">+</button></div></div><div>${money(p.p*q)}</div></div>`).join(""):`<p class="empty">Your cart is empty. Add a plant to get started.</p>`;
+  $("#foot").innerHTML=it.length?`<div class="tot"><span>Subtotal</span><span>${money(sub())}</span></div><div class="tot"><span>Delivery</span><span>${ship()?money(ship()):"Free"}</span></div><div class="tot big"><span>Total</span><span>${money(sub()+ship())}</span></div><button class="btn" id="go">Checkout</button>`:"";
+}
+function checkoutView(){
+  $("#dtitle").textContent="Checkout";
+  $("#body").innerHTML=`<form id="f"><label>Full name<input name="n" required autocomplete="name"></label><label>Email<input name="e" type="email" required autocomplete="email"></label><label>Delivery address<input name="a" required autocomplete="street-address"></label><label>Phone<input name="p" type="tel" required autocomplete="tel"></label><p style="color:var(--muted);font-size:.9rem;margin:0">This demo does not take payment. You pay on delivery.</p></form>`;
+  $("#foot").innerHTML=`<div class="tot big"><span>Total</span><span>${money(sub()+ship())}</span></div><button class="btn" id="place">Place order</button><button class="btn ghost" id="back">Back to cart</button>`;
+}
+function doneView(name,ref){
+  $("#dtitle").textContent="Order placed";
+  $("#body").innerHTML=`<div class="done"><h2>Thank you, ${name.replace(/[<>&]/g,"")}.</h2><p>Order ${ref} is confirmed. We will message you when it ships.</p></div>`;
+  $("#foot").innerHTML=`<button class="btn" id="cont">Keep shopping</button>`;
+}
+function open(){$("#drawer").classList.add("on");$("#veil").classList.add("on");$("#drawer").setAttribute("aria-hidden","false");cartView();$("#close").focus()}
+function shut(){$("#drawer").classList.remove("on");$("#veil").classList.remove("on");$("#drawer").setAttribute("aria-hidden","true")}
+function add(id){cart[id]=(cart[id]||0)+1;save();badge();if($("#drawer").classList.contains("on"))cartView()}
+function dec(id){if(--cart[id]<=0)delete cart[id];save();badge();cartView()}
+
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button,#veil"); if(!t)return;
+  if(t.dataset.c){cat=t.dataset.c;cats();render()}
+  else if(t.dataset.add)add(+t.dataset.add);
+  else if(t.dataset.dec)dec(+t.dataset.dec);
+  else if(t.id==="cartBtn")open();
+  else if(t.id==="close"||t.id==="veil"||t.id==="cont")shut();
+  else if(t.id==="go")checkoutView();
+  else if(t.id==="back")cartView();
+  else if(t.id==="place"){
+    const f=$("#f"); if(!f.reportValidity())return;
+    const ref="FW-"+Math.random().toString(36).slice(2,8).toUpperCase();
+    const name=new FormData(f).get("n");
+    cart={};save();badge();doneView(name,ref);
+  }
+  else if(t.id==="theme"){
+    const r=document.documentElement, dark=getComputedStyle(r).colorScheme==="dark";
+    r.dataset.theme=dark?"light":"dark";
+  }
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")shut()});
+$("#q").addEventListener("input",render);
+$("#sort").addEventListener("change",render);
+cats();render();badge();
+</script>
+</body>
+</html>
